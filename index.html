@@ -14,13 +14,13 @@
             --testo-grigio: #4A5568;      /* Grigio scuro ad alta leggibilità */
         }
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: #2D3748; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #ffffff; line-height: 1.6; }
-        .copertina { text-align: center; padding: 50px 20px; border-bottom: 3px solid var(--colore-accento); margin-bottom: 30px; }
+        .copertina { text-align: center; padding: 45px 20px 25px 20px; border-bottom: 3px solid var(--colore-accento); margin-bottom: 25px; }
         .copertina h1 { font-size: 2.6em; color: var(--colore-principale); margin-bottom: 8px; text-transform: uppercase; letter-spacing: -0.5px; font-weight: 700; }
         .copertina p { font-size: 1.1em; color: var(--testo-grigio); margin-bottom: 15px; }
         .data-edizione { font-weight: 700; margin-top: 20px; color: var(--colore-principale); text-transform: uppercase; font-size: 0.9em; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 0.5px; }
         .badge-lingua { background-color: var(--colore-principale); color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.8em; font-weight: 600; }
-        .sezione { margin-bottom: 45px; page-break-inside: avoid; }
-        .sezione-immagini { page-break-before: always; break-before: page; }
+        .sezione { margin-bottom: 40px; page-break-inside: avoid; }
+        .sezione-immagini { page-break-before: always; break-before: page; page-break-after: always; break-after: page; }
         .titolo-sezione { font-size: 1.6em; color: var(--colore-principale); border-bottom: 3px solid var(--colore-accento); display: inline-block; margin-bottom: 12px; padding-bottom: 4px; text-transform: uppercase; font-weight: 700; letter-spacing: -0.5px; }
         .descrizione-sezione { margin-bottom: 20px; color: var(--testo-grigio); font-size: 0.95em; }
         .nota-evidenziata { background-color: #FDF8F6; padding: 14px; border-left: 4px solid var(--colore-accento); margin-bottom: 20px; border-radius: 6px; font-size: 0.95em; color: #2D3748; }
@@ -39,7 +39,7 @@
         @media (max-width: 600px) { .griglia { grid-template-columns: 1fr; } .row-img { flex-direction: column; } .row-img.inversa { flex-direction: column; } .img-tipico { width: 100%; } .text-filler { width: 100%; } }
         .card { border: 1px solid #E2E8F0; border-top: 3px solid var(--colore-accento); border-radius: 8px; padding: 16px; background: var(--sfondo-card); display: flex; flex-direction: column; page-break-inside: avoid; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
         
-        /* Stile specifico per la scheda orizzontale in primo piano */
+        /* Scheda orizzontale in primo piano */
         .card.destacada { 
             grid-column: span 2; 
             background-color: #FDF8F6; 
@@ -68,25 +68,63 @@
         .qr-immagine { width: 100%; max-width: 105px; height: auto; aspect-ratio: 1 / 1; object-fit: contain; border: 1px solid #E2E8F0; padding: 4px; background: white; border-radius: 6px; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
         .link-mappe { color: var(--colore-principale); font-weight: 700; text-decoration: none; font-size: 0.75em; text-transform: uppercase; align-self: center; border-bottom: 2px solid var(--colore-accento); padding-bottom: 2px; letter-spacing: 0.5px; }
         
-        /* Footer compattato ed esente da interruzioni di pagina */
+        /* Footer con spazio aumentato, linea separatrice e protezione anti-overflow */
         .footer { 
             text-align: center; 
-            padding: 15px 20px; 
+            padding: 15px 20px 10px 20px; 
             border-top: 1px solid #E2E8F0; 
-            margin-top: 20px; 
+            margin-top: 35px; 
             color: var(--colore-principale); 
             page-break-inside: avoid;
             break-inside: avoid;
         }
-        .footer h2 { margin: 0 0 4px 0; font-weight: 700; font-size: 1.3em; }
-        .footer p { margin: 3px 0; font-size: 0.9em; }
+        .footer h2 { margin: 0 0 6px 0; font-weight: 700; font-size: 1.3em; }
+        .footer p { margin: 2px 0; font-size: 0.9em; }
+        .linea-separatrice-footer {
+            width: 45px;
+            height: 2px;
+            background-color: var(--colore-accento);
+            margin: 8px auto;
+            border-radius: 2px;
+        }
 
+        /* Regole specifiche per la stampa */
         @media print { 
             body { padding: 0; background-color: white; } 
-            .copertina { padding-top: 20px; border-bottom: 3px solid var(--colore-accento); margin-bottom: 20px; } 
-            .card { border: 1px solid #CBD5E0; border-top: 3px solid var(--colore-accento); box-shadow: none; } 
-            .sezione { margin-bottom: 30px; }
-            .footer { margin-top: 15px; padding: 10px 0; page-break-inside: avoid; break-inside: avoid; }
+            .copertina { padding-top: 15px; padding-bottom: 15px; border-bottom: 3px solid var(--colore-accento); margin-bottom: 15px; } 
+            .sezione { margin-bottom: 24px; }
+
+            /* Centratura verticale perfetta delle 4 immagini a Pagina 2 */
+            .sezione-immagini {
+                page-break-before: always;
+                break-before: page;
+                page-break-after: always;
+                break-after: page;
+                min-height: 86vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .sezione-immagini .container-zigzag {
+                margin-top: auto;
+                margin-bottom: auto;
+                gap: 24px;
+            }
+
+            /* Compattazione delle schede per garantire spazio prima del footer */
+            .card { border: 1px solid #CBD5E0; border-top: 3px solid var(--colore-accento); box-shadow: none; padding: 11px 14px; } 
+            .descrizione-locale { margin-bottom: 10px; }
+            .qr-immagine { max-width: 88px; margin-bottom: 6px; }
+
+            /* Footer spazioso e stabilizzato senza salto di pagina */
+            .footer { 
+                margin-top: 25px; 
+                padding-top: 12px; 
+                page-break-inside: avoid; 
+                break-inside: avoid; 
+            }
         }
     </style>
 </head>
@@ -114,7 +152,7 @@
         <div class="griglia-tags" style="margin-top: 15px;"><div class="tag">Paella Valenciana</div><div class="tag">Arroz a banda</div><div class="tag">Arroz al horno</div><div class="tag">Arroz negro</div><div class="tag">Paella del Senyoret</div><div class="tag">All i pebre</div><div class="tag">Esgarraet</div><div class="tag">Fideuà</div><div class="tag">Buñuelos de calabaza</div><div class="tag">Horchata</div><div class="tag">Fartons</div><div class="tag">Agua de Valencia</div><div class="tag">Cremaet</div><div class="tag">Chivito</div><div class="tag">Torrijas de horchata</div><div class="tag">Pollo al ajillo</div><div class="tag">Puchero Valenciano</div><div class="tag">Figatell</div><div class="tag">Coca</div><div class="tag">Pepito</div><div class="tag">Pastelitos de boniato</div><div class="tag">Turron</div><div class="tag">Blanc i negre</div></div>
     </div>
 
-    <!-- Sezione delle immagini forzata a iniziare a pagina 2 -->
+    <!-- Sezione delle immagini forzata a occupare centrata la pagina 2 -->
     <div class="sezione sezione-immagini">
         <div class="container-zigzag">
             <div class="row-img"><img src="Bocadillo.jpg" alt="Bocadillo" class="img-tipico"><p class="text-filler">Il re dell'esmorzaret: il bocadillo valenciano, farcito con i prodotti locali più freschi.</p></div>
@@ -154,7 +192,7 @@
             <div class="card"><h3 class="titolo-locale">Bar Nuevo Oslo</h3><div class="categoria-locale">TRADIZIONALE</div><p class="descrizione-locale">Un vero punto di riferimento per l'autentico esmorzaret, famoso per la ricca offerta ed eccezionali panini.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DBar%2BNuevo%2BOslo%2BValencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=Bar+Nuevo+Oslo+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
             <div class="card"><h3 class="titolo-locale">El Tostadero</h3><div class="categoria-locale">AUTENTICO</div><p class="descrizione-locale">Bar tipico valenciano dall'atmosfera semplice e informale.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DEl%2BTostadero%2BValencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=El+Tostadero+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
             <div class="card"><h3 class="titolo-locale">El Trocito del Medio</h3><div class="categoria-locale">MERCATO</div><p class="descrizione-locale">Per una piccola commissione ti cucinano sul momento ciò che acquisti al Mercado Central.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DEl%2BTrocito%2Bdel%2BMedio%2BValencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=El+Trocito+del+Medio+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
-            <div class="card"><h3 class="titolo-locale">Central Bar by Ricard Camarena</h3><div class="categoria-locale">STELLATO</div><p class="descrizione-locale">Il banco di Ricard Camarena al Mercado Central: materie prime eccellenti e panini d'autore.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DCentral+Bar+Ricard+Camarena+Valencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=Central+Bar+Ricard+Camarena+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
+            <div class="card"><h3 class="titolo-locale">Central Bar by Ricard Camarena</h3><div class="categoria-locale">STELLATO</div><p class="descrizione-locale">Il banco di Ricard Camarena al Mercado Central: materie prime eccellenti e pranzi di categoria.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DCentral+Bar+Ricard+Camarena+Valencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=Central+Bar+Ricard+Camarena+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
             <div class="card"><h3 class="titolo-locale">Kiosko La Pergola</h3><div class="categoria-locale">ISTITUZIONE</div><p class="descrizione-locale">Chiosco storico emblematico con un rapporto qualità-prezzo davvero imbattibile.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DKiosko%2BLa%2BPergola%2BValencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=Kiosko+La+Pergola+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
             <div class="card"><h3 class="titolo-locale">Bar Restaurante Rojas Clemente</h3><div class="categoria-locale">TRADIZIONALE</div><p class="descrizione-locale">Locale storico celebre per le sue colazioni sostanziose e l'esmorzaret generoso.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DBar%2BRestaurante%2BRojas%2BClemente%2BValencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=Bar+Restaurante+Rojas+Clemente+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
             <div class="card"><h3 class="titolo-locale">Bar Ricardo</h3><div class="categoria-locale">STORICO</div><p class="descrizione-locale">Un classico dal 1947, rinomato per le sue tapas di mare e l'esmorzaret autentico.</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DBar%2BRicardo%2BValencia" alt="Codice QR" class="qr-immagine"><a href="https://www.google.com/maps/search/?api=1&query=Bar+Ricardo+Valencia" class="link-mappe" target="_blank">VAI A GOOGLE MAPS</a></div>
@@ -270,8 +308,9 @@
         </div>
     </div>
     <div class="footer">
-        <h2>¡Buen Provecho!</h2>
+        <h2>Buon Appetito!</h2>
         <p>Spero che questi suggerimenti rendano il tuo soggiorno a Valencia speciale e pieno di sapori indimenticabili.</p>
+        <div class="linea-separatrice-footer"></div>
         <p><strong>Casa Ross Valencia</strong><br>Guida gastronomica locale, 2026</p>
     </div>
 </body>
